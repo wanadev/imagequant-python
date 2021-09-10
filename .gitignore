@@ -1,0 +1,15 @@
+# Python
+__env__
+__pycache__
+/build/
+/dist/
+*.egg*
+
+
+# CFFI
+/imagequant/_*.c
+/imagequant/_*.o
+/imagequant/*.so
+/imagequant/*.pyd
+/imagequant/*.dll
+/imagequant/*.dylib
