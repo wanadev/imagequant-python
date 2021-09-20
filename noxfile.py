@@ -21,8 +21,8 @@ def lint(session):
     )
 
 
-# @nox.session(python=["3.7", "3.8", "3.9"], reuse_venv=True)
-# def test(session):
-#     session.install("pytest")
-#     session.install(".")
-#     session.run("pytest", "-v", "tests")
+@nox.session(python=["3.7", "3.8", "3.9"], reuse_venv=True)
+def test(session):
+    session.install("pytest")
+    session.install(".[pil]")
+    session.run("pytest", "-v", "--doctest-modules", "imagequant")

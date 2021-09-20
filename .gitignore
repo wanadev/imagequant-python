@@ -5,7 +5,6 @@ __pycache__
 /dist/
 *.egg*
 
-
 # CFFI
 /imagequant/_*.c
 /imagequant/_*.o
@@ -13,3 +12,7 @@ __pycache__
 /imagequant/*.pyd
 /imagequant/*.dll
 /imagequant/*.dylib
+
+# Misc
+__misc__
+out.png

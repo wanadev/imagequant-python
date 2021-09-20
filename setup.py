@@ -35,7 +35,10 @@ setup(
             "flake8",
             "black",
             "pytest",
-        ]
+        ],
+        "pil": [
+            "pillow",
+        ],
     },
     cffi_modules=[
         "imagequant/libimagequant_build.py:ffibuilder",
