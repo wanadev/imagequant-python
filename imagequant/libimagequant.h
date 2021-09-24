@@ -1,4 +1,26 @@
-typedef struct liq_attr liq_attr;
+typedef struct liq_attr {
+    const char *magic_header;
+    void* (*malloc)(size_t);
+    void (*free)(void*);
+
+    double target_mse, max_mse, kmeans_iteration_limit;
+    unsigned int max_colors, max_histogram_entries;
+    unsigned int min_posterization_output /* user setting */, min_posterization_input /* speed setting */;
+    unsigned int kmeans_iterations, feedback_loop_trials;
+    bool last_index_transparent, use_contrast_maps;
+    unsigned char use_dither_map;
+    unsigned char speed;
+
+    unsigned char progress_stage1, progress_stage2, progress_stage3;
+    void *progress_callback;
+    void *progress_callback_user_info;
+
+    void *log_callback;
+    void *log_callback_user_info;
+    void *log_flush_callback;
+    void *log_flush_callback_user_info;
+} liq_attr;
+
 typedef struct liq_image liq_image;
 typedef struct liq_result liq_result;
 typedef struct liq_histogram liq_histogram;

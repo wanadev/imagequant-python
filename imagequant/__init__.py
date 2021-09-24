@@ -31,12 +31,18 @@ def _liq_palette_to_raw_palette(liq_palette):
     )
 
 
-def quantize_raw_rgba_bytes(image_data, width, height):
+def quantize_raw_rgba_bytes(
+    image_data, width, height, dithering_level=1.0, max_colors=256
+):
     """Converts an RGBA image to an optimized 8bit paletted image.
 
     :param bytes image_data: Raw RGBA image data (format: ``b"RGBARGBARGBA..."``).
     :param int width: Image's width.
     :param int height: Image's height.
+    :param float dithering_level: The dithering level, from ``0.0`` (no
+                                  dithering) to ``1.0`` (default: ``1.0``).
+    :param int max_colors: Maximum number of color to use in the palette, from
+                           ``1`` to ``256`` (default: ``256``).
 
     :rtype: (bytes, list)
     :return: The processed image bytes (each byte represents a pixel and its
@@ -53,13 +59,15 @@ def quantize_raw_rgba_bytes(image_data, width, height):
     ... )
     (b'...', [...])
     """
-    # TODO Allow to use dither map
 
     liq_attr = lib.liq_attr_create()
+    liq_attr.max_colors = max_colors
+
     liq_image = lib.liq_image_create_rgba(liq_attr, image_data, width, height, 0)
 
     liq_result_p = ffi.new("liq_result**")
     lib.liq_image_quantize(liq_image, liq_attr, liq_result_p)
+    lib.liq_set_dithering_level(liq_result_p[0], dithering_level)
 
     raw_8bit_pixels = ffi.new("char[]", width * height)
     lib.liq_write_remapped_image(
@@ -79,10 +87,14 @@ def quantize_raw_rgba_bytes(image_data, width, height):
     return output_image_data, output_palette
 
 
-def quantize_pil_image(image):
+def quantize_pil_image(image, dithering_level=1.0, max_colors=256):
     """Converts an RGBA image to an optimized 8bit paletted image.
 
     :param PIL.Image.Image image: The image to process.
+    :param float dithering_level: The dithering level, from ``0.0`` (no
+                                  dithering) to ``1.0`` (default: ``1.0``).
+    :param int max_colors: Maximum number of color to use in the palette, from
+                           ``1`` to ``256`` (default: ``256``).
 
     :rtype: PIL.Image.Image
     :return: The processed image as a PIL/Pillow image.
@@ -101,7 +113,11 @@ def quantize_pil_image(image):
     input_image_data = _pil_image_to_raw_bytes(image)
 
     output_image_data, output_palette = quantize_raw_rgba_bytes(
-        input_image_data, image.width, image.height
+        input_image_data,
+        image.width,
+        image.height,
+        dithering_level=dithering_level,
+        max_colors=max_colors,
     )
 
     output_image = Image.frombytes(
