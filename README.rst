@@ -8,6 +8,52 @@ Imagequant Python - Python Bindings for libimagequant
 .. _libimagequant: https://github.com/ImageOptim/libimagequant
 
 
+Usage
+-----
+
+With PIL / Pillow
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    from PIL import Image
+    import imagequant
+
+    input_image = Image.open("./example.png")
+    output_image = imagequant.quantize_pil_image(
+        input_image,
+        dithering_level=1.0,
+        max_colors=256,
+    )
+    output_image.save("./out.png", format="PNG")
+
+
+With Raw Data
+~~~~~~~~~~~~~
+
+.. code-block:: python
+
+    import imagequant
+
+    # 2×2px image
+    IMAGE_DATA = (
+        # | R | G | B | A |
+        b"\xFF\x00\x00\xFF"  # red
+        b"\x00\xFF\x00\xFF"  # lime
+        b"\x00\x00\xFF\xFF"  # blue
+        b"\xFF\xFF\xFF\xFF"  # white
+    )
+
+    output_image_data, output_palette = imagequant.quantize_raw_rgba_bytes(
+        IMAGE_DATA,  # RGBA image data
+        2, 2,        # width, height
+        dithering_level=1.0,
+        max_colors=256,
+    )
+
+    # you can now encode image data and the palette in any image format...
+
+
 License
 -------
 
