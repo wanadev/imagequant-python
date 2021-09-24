@@ -59,6 +59,14 @@ def quantize_raw_rgba_bytes(
     ... )
     (b'...', [...])
     """
+    if len(image_data) != 4 * width * height:
+        raise ValueError("image_data length do not match the given width and height")
+
+    if not 0.0 <= dithering_level <= 1.0:
+        raise ValueError("dithering_level must be a float between 0.0 and 1.0")
+
+    if not 1 <= max_colors <= 256:
+        raise ValueError("max_colors must br an integer between 1 and 256")
 
     liq_attr = lib.liq_attr_create()
     liq_attr.max_colors = max_colors
