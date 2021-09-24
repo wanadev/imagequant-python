@@ -1,7 +1,7 @@
 Imagequant Python - Python Bindings for libimagequant
 =====================================================
 
-**Imagequant Python** is are bindings to allow using libimagequant_ from Python.
+**Imagequant Python** are bindings to allow using libimagequant_ from Python.
 
 **Libimagequant** is a small, portable C library for high-quality conversion of RGBA images to 8-bit indexed-color (palette) images.
 
@@ -26,6 +26,11 @@ With PIL / Pillow
         max_colors=256,
     )
     output_image.save("./out.png", format="PNG")
+
+|input_image| → |output_image|
+
+.. |input_image| image:: ./example.png
+.. |output_image| image:: ./example_out.png
 
 
 With Raw Data
@@ -52,6 +57,19 @@ With Raw Data
     )
 
     # you can now encode image data and the palette in any image format...
+
+Example ``output_image_data``:
+
+.. code-block:: python
+
+    b'\x02\x03\x00\x01'
+
+Example ``output_palette``:
+
+.. code-block:: python
+
+    [0, 0, 255, 255, 255, 255, 255, 255, 255, 0, 0, 255, 0, 255, 0, 255, 0, 0, 0, 0, ...]
+    # color 0      | color 1           | color 2       | color 3       | color 4   | ...
 
 
 License
