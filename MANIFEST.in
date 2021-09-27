@@ -1,0 +1,12 @@
+include README.md
+include README.rst
+
+include imagequant/libimagequant.h
+
+include libimagequant/*.c
+include libimagequant/*.h
+include libimagequant/COPYRIGHT
+include libimagequant/README.md
+include libimagequant/version.txt
+
+exclude libimagequant/example.c
