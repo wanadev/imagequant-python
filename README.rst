@@ -148,5 +148,5 @@ TODO
    :target: https://github.com/wanadev/imagequant-python/actions
 .. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://black.readthedocs.io/en/stable/
-.. |License| image:: https://img.shields.io/pypi/l/imagequant-python.svg
+.. |License| image:: https://img.shields.io/pypi/l/imagequant.svg
    :target: https://github.com/wanadev/imagequant-python/blob/master/LICENSE
