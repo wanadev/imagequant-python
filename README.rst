@@ -36,8 +36,8 @@ With PIL / Pillow
     input_image = Image.open("./example.png")
     output_image = imagequant.quantize_pil_image(
         input_image,
-        dithering_level=1.0,
-        max_colors=256,
+        dithering_level=1.0,  # from 0.0 to 1.0
+        max_colors=256,       # from 1 to 256
     )
     output_image.save("./out.png", format="PNG")
 
@@ -64,10 +64,10 @@ With Raw Data
     )
 
     output_image_data, output_palette = imagequant.quantize_raw_rgba_bytes(
-        IMAGE_DATA,  # RGBA image data
-        2, 2,        # width, height
-        dithering_level=1.0,
-        max_colors=256,
+        IMAGE_DATA,           # RGBA image data
+        2, 2,                 # width, height
+        dithering_level=1.0,  # from 0.0 to 1.0
+        max_colors=256,       # from 1 to 256
     )
 
     # you can now encode image data and the palette in any image format...
@@ -134,7 +134,7 @@ Read its `license terms <https://github.com/ImageOptim/libimagequant#license>`_ 
 Changelog
 ---------
 
-TODO
+**v1.0.0:** Initial release with a minimal API.
 
 
 
