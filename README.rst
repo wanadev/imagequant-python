@@ -1,11 +1,25 @@
 Imagequant Python - Python Bindings for libimagequant
 =====================================================
 
+|Github| |Discord| |PYPI Version| |Build Status| |Black| |License|
+
 **Imagequant Python** are bindings to allow using libimagequant_ from Python.
 
 **Libimagequant** is a small, portable C library for high-quality conversion of RGBA images to 8-bit indexed-color (palette) images.
 
 .. _libimagequant: https://github.com/ImageOptim/libimagequant
+
+
+Install
+-------
+
+From PyPI::
+
+    pip3 install imagequant
+
+NOTE: you may require compilation tools to build the library if you system is not suitable for the precompiled wheels. On Debian / Ubuntu you can install the build dependencies with the following command::
+
+    sudo apt install build-essential python3-dev
 
 
 Usage
@@ -72,6 +86,35 @@ Example ``output_palette``:
     # color 0      | color 1           | color 2       | color 3       | color 4   | ...
 
 
+Development of the Bindings
+---------------------------
+
+Clone the repository and get the submodules::
+
+    git clone https://github.com/wanadev/imagequant-python.git
+    cd imagequant-python
+    git submodule init
+    git submodule update
+
+Install some dependencies (preferably in a virtualenv)::
+
+    pip3 install nox cffi pillow
+
+Build the binary part of the lib::
+
+    python imagequant/libimagequant_build.py
+
+A ``.so`` file (or a ``.pyd`` file on Windows, or a ``.dylib`` file on MacOS) shoud now be present in the ``imagequant/`` folder. You will not need to run this command again until you change something in ``imagequant/libimagequant.h`` or in ``libimagequant/*.{c,h}``.
+
+To check the coding style, you can run the lint with the following command::
+
+    nox -s lint
+
+To run the tests, use the following command::
+
+    nox -s test
+
+
 License
 -------
 
@@ -85,4 +128,25 @@ License
 
 Read its `license terms <https://github.com/ImageOptim/libimagequant#license>`_ for more information.
 
-.. _LICENSE: ./LICENSE
+.. _LICENSE: https://github.com/wanadev/imagequant-python/blob/master/LICENSE
+
+
+Changelog
+---------
+
+TODO
+
+
+
+.. |Github| image:: https://img.shields.io/github/stars/wanadev/imagequant-python?label=Github&logo=github
+   :target: https://github.com/wanadev/imagequant-python
+.. |Discord| image:: https://img.shields.io/badge/chat-Discord-8c9eff?logo=discord&logoColor=ffffff
+   :target: https://discord.gg/BmUkEdMuFp
+.. |PYPI Version| image:: https://img.shields.io/pypi/v/imagequant.svg
+   :target: https://pypi.python.org/pypi/imagequant
+.. |Build Status| image:: https://github.com/wanadev/imagequant-python/actions/workflows/python-ci.yml/badge.svg
+   :target: https://github.com/wanadev/imagequant-python/actions
+.. |Black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://black.readthedocs.io/en/stable/
+.. |License| image:: https://img.shields.io/pypi/l/imagequant-python.svg
+   :target: https://github.com/wanadev/imagequant-python/blob/master/LICENSE
