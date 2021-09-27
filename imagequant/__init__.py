@@ -66,7 +66,7 @@ def quantize_raw_rgba_bytes(
         raise ValueError("dithering_level must be a float between 0.0 and 1.0")
 
     if not 1 <= max_colors <= 256:
-        raise ValueError("max_colors must br an integer between 1 and 256")
+        raise ValueError("max_colors must be an integer between 1 and 256")
 
     liq_attr = lib.liq_attr_create()
     liq_attr.max_colors = max_colors
