@@ -25,4 +25,5 @@ def lint(session):
 def test(session):
     session.install("pytest")
     session.install(".[pil]")
+    session.run("python", "./imagequant/libimagequant_build.py")
     session.run("pytest", "-v", "--doctest-modules", "imagequant")
