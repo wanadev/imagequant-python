@@ -134,8 +134,8 @@ Read its `license terms <https://github.com/ImageOptim/libimagequant#license>`_ 
 Changelog
 ---------
 
-**v1.0.1:** Fix encoding while reading the README in setup.py
-**v1.0.0:** Initial release with a minimal API.
+* **v1.0.1:** Fix encoding while reading the README in setup.py
+* **v1.0.0:** Initial release with a minimal API.
 
 
 
