@@ -134,6 +134,12 @@ Read its `license terms <https://github.com/ImageOptim/libimagequant#license>`_ 
 Changelog
 ---------
 
+* **v1.0.3:**
+
+  * ``arm64`` and ``universal2`` wheels for macOS M1
+  * ``x86`` and ``x68_64`` wheels for musl-based Linux distro (Alpine,...)
+  * ``x86`` wheels for Windows (``x86_64`` were already available)
+
 * **v1.0.2:** Python 3.10 support and wheels
 * **v1.0.1:** Fix encoding while reading the README in setup.py
 * **v1.0.0:** Initial release with a minimal API.
