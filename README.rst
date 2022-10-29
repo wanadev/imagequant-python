@@ -136,6 +136,10 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
+  * Nothing yet :)
+
+* **v1.0.4:**
+
   * Added Python 3.11 support
 
 * **v1.0.3:**
