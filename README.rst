@@ -134,6 +134,10 @@ Read its `license terms <https://github.com/ImageOptim/libimagequant#license>`_ 
 Changelog
 ---------
 
+* **[NEXT]** (changes on ``master`` that have not been released yet):
+
+  * Added Python 3.11 support
+
 * **v1.0.3:**
 
   * ``arm64`` and ``universal2`` wheels for macOS M1
