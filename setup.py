@@ -16,6 +16,13 @@ setup(
     version="1.0.3",
     description="Image Quantization Library",
     url="https://github.com/wanadev/imagequant-python",
+    project_urls={
+        "Source Code": "https://github.com/wanadev/imagequant-python",
+        "Documentation": "https://github.com/wanadev/imagequant-python#usage",
+        "Changelog": "https://github.com/wanadev/imagequant-python#changelog",
+        "Issues": "https://github.com/wanadev/imagequant-python/issues",
+        "Chat": "https://discord.gg/BmUkEdMuFp",
+    },
     license="BSD-3-Clause",
     long_description=long_description,
     keywords="image libimagequant pngquant cffi",
