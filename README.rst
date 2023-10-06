@@ -136,7 +136,8 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
-  * Nothing yet :)
+  * Added Python 3.12 support (@flozz)
+  * Removed Python 3.7 support (@flozz)
 
 * **v1.0.4:**
 
