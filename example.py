@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# import sys
-# sys.settrace()
+
 from PIL import Image
 import imagequant
 
