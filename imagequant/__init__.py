@@ -7,6 +7,27 @@ except ImportError:
 from ._libimagequant import lib, ffi
 
 
+def _get_error_msg(code):
+    if code == lib.LIQ_QUALITY_TOO_LOW:
+        return "Quality too low"
+    elif code == lib.LIQ_VALUE_OUT_OF_RANGE:
+        return "Value out of range"
+    elif code == lib.LIQ_OUT_OF_MEMORY:
+        return "Out of memory"
+    elif code == lib.LIQ_ABORTED:
+        return "Aborted"
+    elif code == lib.LIQ_BITMAP_NOT_AVAILABLE:
+        return "Bitmap not available"
+    elif code == lib.LIQ_BUFFER_TOO_SMALL:
+        return "Buffer too small"
+    elif code == lib.LIQ_INVALID_POINTER:
+        return "Invalid pointer"
+    elif code == lib.LIQ_UNSUPPORTED:
+        return "Unsupported"
+    else:
+        return "Unknown error"
+
+
 def _pil_image_to_raw_bytes(image):
     """Get raw bytes from a PIL/Pillow image.
 
@@ -32,7 +53,13 @@ def _liq_palette_to_raw_palette(liq_palette):
 
 
 def quantize_raw_rgba_bytes(
-    image_data, width, height, dithering_level=1.0, max_colors=256
+    image_data,
+    width,
+    height,
+    dithering_level=1.0,
+    max_colors=256,
+    min_quality=0,
+    max_quality=100,
 ):
     """Converts an RGBA image to an optimized 8bit paletted image.
 
@@ -43,6 +70,8 @@ def quantize_raw_rgba_bytes(
                                   dithering) to ``1.0`` (default: ``1.0``).
     :param int max_colors: Maximum number of color to use in the palette, from
                            ``1`` to ``256`` (default: ``256``).
+    :param int min_quality: Minimum quality, from ``0`` to ``100`` (default:0).
+    :param int max_quality: Maximum quality, from ``0`` to ``100`` (default:100).
 
     :rtype: (bytes, list)
     :return: The processed image bytes (each byte represents a pixel and its
@@ -68,13 +97,28 @@ def quantize_raw_rgba_bytes(
     if not 1 <= max_colors <= 256:
         raise ValueError("max_colors must be an integer between 1 and 256")
 
+    if not 0 <= min_quality <= 100:
+        raise ValueError("min_quality must be an integer between 0 and 100")
+
+    if not 0 <= max_quality <= 100:
+        raise ValueError("max_quality must be an integer between 0 and 100")
+
+    if min_quality > max_quality:
+        raise ValueError("min_quality must be lower or equal to max_quality")
+
+    min_quality = int(min_quality)
+    max_quality = int(max_quality)
+
     liq_attr = lib.liq_attr_create()
     liq_attr.max_colors = max_colors
+    lib.liq_set_quality(liq_attr, min_quality, max_quality)
 
     liq_image = lib.liq_image_create_rgba(liq_attr, image_data, width, height, 0)
 
     liq_result_p = ffi.new("liq_result**")
-    lib.liq_image_quantize(liq_image, liq_attr, liq_result_p)
+    code = lib.liq_image_quantize(liq_image, liq_attr, liq_result_p)
+    if code != lib.LIQ_OK:
+        raise RuntimeError(_get_error_msg(code))
     lib.liq_set_dithering_level(liq_result_p[0], dithering_level)
 
     raw_8bit_pixels = ffi.new("char[]", width * height)
@@ -95,7 +139,13 @@ def quantize_raw_rgba_bytes(
     return output_image_data, output_palette
 
 
-def quantize_pil_image(image, dithering_level=1.0, max_colors=256):
+def quantize_pil_image(
+    image,
+    dithering_level=1.0,
+    max_colors=256,
+    min_quality=0,
+    max_quality=100,
+):
     """Converts an RGBA image to an optimized 8bit paletted image.
 
     :param PIL.Image.Image image: The image to process.
@@ -103,6 +153,8 @@ def quantize_pil_image(image, dithering_level=1.0, max_colors=256):
                                   dithering) to ``1.0`` (default: ``1.0``).
     :param int max_colors: Maximum number of color to use in the palette, from
                            ``1`` to ``256`` (default: ``256``).
+    :param int min_quality: Minimum quality, from ``0`` to ``100`` (default:0).
+    :param int max_quality: Maximum quality, from ``0`` to ``100`` (default:100).
 
     :rtype: PIL.Image.Image
     :return: The processed image as a PIL/Pillow image.
@@ -126,6 +178,8 @@ def quantize_pil_image(image, dithering_level=1.0, max_colors=256):
         image.height,
         dithering_level=dithering_level,
         max_colors=max_colors,
+        min_quality=min_quality,
+        max_quality=max_quality,
     )
 
     output_image = Image.frombytes(
