@@ -17,3 +17,5 @@ __pycache__
 __misc__
 out.png
 venv
+.idea
+.vscode
