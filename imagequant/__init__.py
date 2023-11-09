@@ -106,9 +106,6 @@ def quantize_raw_rgba_bytes(
     if min_quality > max_quality:
         raise ValueError("min_quality must be lower or equal to max_quality")
 
-    min_quality = int(min_quality)
-    max_quality = int(max_quality)
-
     liq_attr = lib.liq_attr_create()
     liq_attr.max_colors = max_colors
     lib.liq_set_quality(liq_attr, min_quality, max_quality)
