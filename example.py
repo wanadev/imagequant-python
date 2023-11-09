@@ -10,7 +10,7 @@ def main():
         input_image,
         dithering_level=1.0,
         max_colors=256,
-        min_quality=20,
+        min_quality=0,
         max_quality=100,
     )
     output_image.save("./out.png", format="PNG")
