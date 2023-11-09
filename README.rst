@@ -140,6 +140,10 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
+  * Nothing yet ;)
+
+* **v1.1.0:**
+
   * Added options to set minimal and target (maximal) quality (@injet-zhou, #4)
 
 * **v1.0.5:**
