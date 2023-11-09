@@ -8,6 +8,12 @@ from ._libimagequant import lib, ffi
 
 
 def _get_error_msg(code):
+    """Get error string from libimagequant return codes.
+
+    :param int code: The code returned by libimagequant.
+
+    :rtype: str
+    """
     if code == lib.LIQ_QUALITY_TOO_LOW:
         return "Quality too low"
     elif code == lib.LIQ_VALUE_OUT_OF_RANGE:
@@ -70,13 +76,17 @@ def quantize_raw_rgba_bytes(
                                   dithering) to ``1.0`` (default: ``1.0``).
     :param int max_colors: Maximum number of color to use in the palette, from
                            ``1`` to ``256`` (default: ``256``).
-    :param int min_quality: Minimum quality, from ``0`` to ``100`` (default:0).
-    :param int max_quality: Maximum quality, from ``0`` to ``100`` (default:100).
+    :param int min_quality: Minimum acceptable quality. If the minimum quality
+                            can’t be met, the quantization will be aborted and
+                            a ``RuntimeError`` will be raised. From ``0`` to
+                            ``100`` (default: ``0``).
+    :param int max_quality: The target quality, from ``0`` to ``100``
+                            (default: ``100``).
 
-    :rtype: (bytes, list)
+    :rtype: tuple(bytes, list)
     :return: The processed image bytes (each byte represents a pixel and its
-             value is the index of a color from the palette), and the palette (
-             format: ``[r0, g0, b0, a0, r1, g1, b1, a1,...]``).
+             value is the index of a color from the palette), and the palette
+             (format: ``[r0, g0, b0, a0, r1, g1, b1, a1,...]``).
 
     >>> import imagequant
     >>> imagequant.quantize_raw_rgba_bytes(
@@ -150,8 +160,12 @@ def quantize_pil_image(
                                   dithering) to ``1.0`` (default: ``1.0``).
     :param int max_colors: Maximum number of color to use in the palette, from
                            ``1`` to ``256`` (default: ``256``).
-    :param int min_quality: Minimum quality, from ``0`` to ``100`` (default:0).
-    :param int max_quality: Maximum quality, from ``0`` to ``100`` (default:100).
+    :param int min_quality: Minimum acceptable quality. If the minimum quality
+                            can’t be met, the quantization will be aborted and
+                            a ``RuntimeError`` will be raised. From ``0`` to
+                            ``100`` (default: ``0``).
+    :param int max_quality: The target quality, from ``0`` to ``100``
+                            (default: ``100``).
 
     :rtype: PIL.Image.Image
     :return: The processed image as a PIL/Pillow image.

@@ -38,6 +38,8 @@ With PIL / Pillow
         input_image,
         dithering_level=1.0,  # from 0.0 to 1.0
         max_colors=256,       # from 1 to 256
+        min_quality=0,        # from 0 to 100
+        max_quality=100,      # from 0 to 100
     )
     output_image.save("./out.png", format="PNG")
 
@@ -68,6 +70,8 @@ With Raw Data
         2, 2,                 # width, height
         dithering_level=1.0,  # from 0.0 to 1.0
         max_colors=256,       # from 1 to 256
+        min_quality=0,        # from 0 to 100
+        max_quality=100,      # from 0 to 100
     )
 
     # you can now encode image data and the palette in any image format...
