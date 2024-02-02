@@ -142,6 +142,10 @@ Changelog
 
   * Nothing yet ;)
 
+* **v1.1.1:**
+
+  * dist: Build and publish arm64 wheels for Linux and Windows (@laggykiller, #9, #10)
+
 * **v1.1.0:**
 
   * Added options to set minimal and target (maximal) quality (@injet-zhou, #4)

@@ -13,7 +13,7 @@ if os.path.isfile("README.rst"):
 
 setup(
     name="imagequant",
-    version="1.1.0",
+    version="1.1.1",
     description="Image Quantization Library",
     url="https://github.com/wanadev/imagequant-python",
     project_urls={
