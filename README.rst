@@ -140,6 +140,10 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
+  * Nothing yet ;)
+
+* **v1.1.2:**
+
   * misc: Added Python 3.13 support (@flozz)
   * misc!: Removed Python 3.8 support (@flozz)
 
