@@ -46,10 +46,12 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         include:
           - os: windows-2019
             cibw_archs: AMD64
+            cibw_skip: pp*-win_amd64
           - os: windows-2019
             cibw_archs: ARM64
           - os: windows-2019
@@ -84,6 +86,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_ARCHS: ${{ matrix.cibw_archs }}
+          CIBW_SKIP: ${{ matrix.cibw_skip }}
           PIP_USE_PEP517: 1
 
       - name: "Upload artifacts"
