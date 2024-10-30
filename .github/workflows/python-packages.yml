@@ -54,11 +54,11 @@ jobs:
             cibw_archs: ARM64
           - os: windows-2019
             cibw_archs: x86
-          - os: macos-11
+          - os: macos-12
             cibw_archs: x86_64
-          - os: macos-11
+          - os: macos-12
             cibw_archs: arm64
-          - os: macos-11
+          - os: macos-12
             cibw_archs: universal2
           - os: ubuntu-22.04
             cibw_archs: x86_64
