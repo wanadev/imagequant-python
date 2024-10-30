@@ -1,6 +1,7 @@
 import os
 
 from cffi import FFI
+from distutils import ccompiler
 
 
 _ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -15,6 +16,10 @@ _LIBIMAGEQUANT_SRC = [
     "libimagequant.c",
 ]
 
+CC_ARGS = []
+if ccompiler.get_default_compiler() == "unix":
+    CC_ARGS = ["-Wno-incompatible-pointer-types"]
+
 
 ffibuilder = FFI()
 ffibuilder.set_source(
@@ -23,6 +28,7 @@ ffibuilder.set_source(
     include_dirs=[
         os.path.join(_ROOT, "..", "libimagequant"),
     ],
+    extra_compile_args=CC_ARGS,
 )
 ffibuilder.cdef(open(_LIBIMAGEQUANT_H, "r").read())
 

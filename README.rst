@@ -144,6 +144,7 @@ Changelog
 
 * **v1.1.2:**
 
+  * misc: Fixed libimagequant build on newer GCC versions (@flozz)
   * misc: Added Python 3.13 support (@flozz)
   * misc!: Removed Python 3.8 support (@flozz)
 
