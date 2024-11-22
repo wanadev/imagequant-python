@@ -49,23 +49,23 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-2019
+          - os: windows-2022
             cibw_archs: AMD64
-          - os: windows-2019
+          - os: windows-2022
             cibw_archs: ARM64
-          - os: windows-2019
+          - os: windows-2022
             cibw_archs: x86
-          - os: macos-12
+          - os: macos-13
             cibw_archs: x86_64
-          - os: macos-12
+          - os: macos-13
             cibw_archs: arm64
-          - os: macos-12
+          - os: macos-13
             cibw_archs: universal2
-          - os: ubuntu-22.04
+          - os: ubuntu-24.04
             cibw_archs: x86_64
-          - os: ubuntu-22.04
+          - os: ubuntu-24.04
             cibw_archs: i686
-          - os: ubuntu-22.04
+          - os: ubuntu-24.04
             cibw_archs: aarch64
 
     steps:
