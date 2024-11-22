@@ -51,7 +51,6 @@ jobs:
         include:
           - os: windows-2019
             cibw_archs: AMD64
-            cibw_skip: pp*-win_amd64
           - os: windows-2019
             cibw_archs: ARM64
           - os: windows-2019

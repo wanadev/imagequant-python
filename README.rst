@@ -140,7 +140,7 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
-  * Nothing yet ;)
+  * misc(deps): Fixed PyPy builds on Windows platform (@flozz)
 
 * **v1.1.2:**
 

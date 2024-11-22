@@ -32,11 +32,9 @@ setup(
     packages=find_packages(),
     setup_requires=[
         "cffi>=1.0.0",
-        "setuptools",
     ],
     install_requires=[
         "cffi>=1.0.0",
-        "setuptools",
     ],
     extras_require={
         "dev": [
