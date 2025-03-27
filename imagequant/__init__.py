@@ -125,6 +125,9 @@ def quantize_raw_rgba_bytes(
     liq_result_p = ffi.new("liq_result**")
     code = lib.liq_image_quantize(liq_image, liq_attr, liq_result_p)
     if code != lib.LIQ_OK:
+        lib.liq_result_destroy(liq_result_p[0])
+        lib.liq_image_destroy(liq_image)
+        lib.liq_attr_destroy(liq_attr)
         raise RuntimeError(_get_error_msg(code))
     lib.liq_set_dithering_level(liq_result_p[0], dithering_level)
 
