@@ -142,7 +142,11 @@ Changelog
 
   * Nothing yet ;)
 
-** **v1.1.3:**
+* **v1.1.4:**
+
+  * fix: Cleanup before throwing RuntimeError to avoid memory leak (@laggykiller, #26)
+
+* **v1.1.3:**
 
   * misc(deps): Fixed PyPy builds on Windows platform (@flozz)
 
