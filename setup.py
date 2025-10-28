@@ -32,6 +32,7 @@ setup(
     packages=find_packages(),
     setup_requires=[
         "cffi>=1.0.0",
+        "pycparser",
     ],
     install_requires=[
         "cffi>=1.0.0",

@@ -23,7 +23,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v6
         with:
-          python-version: "3.13"
+          python-version: "3.14"
 
       - name: "Install python dependencies"
         run: |
@@ -65,6 +65,7 @@ jobs:
             cibw_archs: x86_64
           - os: ubuntu-24.04
             cibw_archs: i686
+            cibw_skip: cp314-* cp314t-*  # CFFI has no more i686 support for Python >= 3.14
           - os: ubuntu-24.04
             cibw_archs: aarch64
 
@@ -113,6 +114,10 @@ jobs:
           mkdir dist/
           mv sdist/* dist/
           mv wheels-*/*.whl dist/
+
+      - name: "List packages"
+        run: |
+          find . -name "*.whl" -o -name "*.tar.gz"
 
       - name: "Publish packages on PyPI"
         uses: pypa/gh-action-pypi-publish@release/v1

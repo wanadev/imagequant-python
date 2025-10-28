@@ -140,7 +140,9 @@ Changelog
 
 * **[NEXT]** (changes on ``master`` that have not been released yet):
 
-  * Nothing yet ;)
+  * misc: Added support for Python 3.14 (@flozz)
+  * misc!: Removed support for Python 3.9 (@flozz)
+  * misc!: Dropped support of x86 (32bits) architecture for Python >= 3.14 (@flozz)
 
 * **v1.1.4:**
 
