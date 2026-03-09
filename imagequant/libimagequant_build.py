@@ -3,7 +3,6 @@ import os
 from cffi import FFI
 from distutils import ccompiler
 
-
 _ROOT = os.path.abspath(os.path.dirname(__file__))
 _LIBIMAGEQUANT_H = os.path.join(_ROOT, "libimagequant.h")
 _LIBIMAGEQUANT_SRC = [

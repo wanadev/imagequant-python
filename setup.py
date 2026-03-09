@@ -5,7 +5,6 @@ import os
 
 from setuptools import setup, find_packages
 
-
 long_description = ""
 if os.path.isfile("README.rst"):
     long_description = open("README.rst", "r", encoding="utf-8").read()

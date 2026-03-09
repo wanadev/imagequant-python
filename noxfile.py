@@ -1,6 +1,5 @@
 import nox
 
-
 PYTHON_FILES = [
     "imagequant",
     "setup.py",
@@ -19,6 +18,12 @@ def lint(session):
         "--color",
         *PYTHON_FILES,
     )
+
+
+@nox.session(reuse_venv=True)
+def black_fix(session):
+    session.install("black")
+    session.run("black", *PYTHON_FILES)
 
 
 @nox.session(python=["3.10", "3.11", "3.12", "3.13", "3.14"], reuse_venv=True)
