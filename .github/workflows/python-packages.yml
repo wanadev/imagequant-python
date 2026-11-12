@@ -64,9 +64,6 @@ jobs:
           - os: ubuntu-26.04
             cibw_archs: x86_64
           - os: ubuntu-26.04
-            cibw_archs: i686
-            cibw_skip: cp314-* cp314t-* cp315-* cp315t-*  # CFFI has no more i686 support for Python >= 3.14
-          - os: ubuntu-26.04
             cibw_archs: aarch64
 
     steps:
