@@ -23,7 +23,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v7
         with:
-          python-version: "3.14"
+          python-version: "3.15"
 
       - name: "Install python dependencies"
         run: |
@@ -55,18 +55,18 @@ jobs:
             cibw_archs: ARM64
           - os: windows-2022
             cibw_archs: x86
-          - os: macos-13
+          - os: macos-15
             cibw_archs: x86_64
-          - os: macos-13
+          - os: macos-15
             cibw_archs: arm64
-          - os: macos-13
+          - os: macos-15
             cibw_archs: universal2
-          - os: ubuntu-24.04
+          - os: ubuntu-26.04
             cibw_archs: x86_64
-          - os: ubuntu-24.04
+          - os: ubuntu-26.04
             cibw_archs: i686
-            cibw_skip: cp314-* cp314t-*  # CFFI has no more i686 support for Python >= 3.14
-          - os: ubuntu-24.04
+            cibw_skip: cp314-* cp314t-* cp315-* cp315t-*  # CFFI has no more i686 support for Python >= 3.14
+          - os: ubuntu-26.04
             cibw_archs: aarch64
 
     steps:

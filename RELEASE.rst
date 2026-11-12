@@ -9,6 +9,7 @@ This file is a memo for the maintainer.
 
 * If imagequant has been updated, ensure ``MANIFEST.in`` is up to date,
   generate an sdist package and check we are able to build a wheel from it.
+* Update copyright year in LICENSE
 
 
 1. Release
